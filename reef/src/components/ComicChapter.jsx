@@ -26,8 +26,9 @@ export default function ComicChapter({ chapter, index }) {
     if (imgRef.current.complete && imgRef.current.naturalWidth > 0) {
       setImgLoaded(true);
     } else {
-      imgRef.current.addEventListener("load", handleLoad);
-      return () => imgRef.current.removeEventListener("load", handleLoad);
+      const imgNode = imgRef.current;
+      imgNode.addEventListener("load", handleLoad);
+      return () => imgNode.removeEventListener("load", handleLoad);
     }
   }, [prefersReducedMotion]);
 

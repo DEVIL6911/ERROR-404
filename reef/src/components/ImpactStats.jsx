@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "motion/react";
-import CountUp from "react-countup";
+import CountUpPkg from "react-countup";
+const CountUp = CountUpPkg.default ?? CountUpPkg;
 const stats = [
   { end: 12840, suffix: "+", label: "VOLUNTEERS" },
   { end: 87, suffix: "", label: "CONSERVATION PROJECTS" },
