@@ -29,14 +29,13 @@
 
   html {
     scroll-behavior: smooth;
-    scroll-snap-type: y proximity;
   }
 
   body {
     font-family: var(--font-body);
     font-weight: 400;
     color: var(--color-mist);
-    background: var(--color-abyss);
+    background: #021018;
     line-height: 1.65;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;

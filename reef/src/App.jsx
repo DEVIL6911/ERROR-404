@@ -1,8 +1,5 @@
-import { useState, useCallback, useEffect } from "react";
-import { motion, AnimatePresence } from "motion/react";
 import Header from "./components/Header";
 import LandingHero from "./components/Hero/LandingHero";
-import StoryTransition from "./components/StoryTransition";
 import ComicChapter from "./components/ComicChapter";
 import FinaleSection from "./components/FinaleSection";
 import ActionSection from "./components/ActionSection";
@@ -14,71 +11,28 @@ import { useSmoothScroll } from "./hooks/useSmoothScroll";
 import { useScrollProgress } from "./hooks/useScrollProgress";
 
 export default function App() {
-  const [storyStarted, setStoryStarted] = useState(false);
-  const [transitioning, setTransitioning] = useState(false);
   const progress = useScrollProgress();
   useSmoothScroll();
-
-  const handleStartStory = useCallback(() => {
-    setTransitioning(true);
-  }, []);
-
-  const handleTransitionComplete = useCallback(() => {
-    setStoryStarted(true);
-    setTransitioning(false);
-    setTimeout(() => {
-      const el = document.getElementById("chapter-1");
-      if (el) el.scrollIntoView({ behavior: "smooth" });
-    }, 100);
-  }, []);
-
-  useEffect(() => {
-    if (storyStarted) {
-      const el = document.getElementById("chapter-1");
-      if (el) el.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [storyStarted]);
 
   return (
     <div className="relative bg-abyss text-mist min-h-screen">
       <ScrollProgress progress={progress} />
-      <Header onStartStory={handleStartStory} storyStarted={storyStarted} />
+      <Header />
 
-      <AnimatePresence>
-        {!storyStarted && (
-          <motion.div
-            key="landing"
-            initial={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            <LandingHero onStartStory={handleStartStory} />
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Surface Shoreline & Split Ocean Hero */}
+      <LandingHero />
 
-      {storyStarted && (
-        <motion.div
-          key="comic"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-        >
-          {chapters.map((chapter, i) => (
-            <ComicChapter key={chapter.id} chapter={chapter} index={i} />
-          ))}
-          <FinaleSection />
-        </motion.div>
-      )}
+      {/* Seamless Continuous Comic Story Section */}
+      <div id="comic-story" className="relative z-10">
+        {chapters.map((chapter, i) => (
+          <ComicChapter key={chapter.id} chapter={chapter} index={i} />
+        ))}
+        <FinaleSection />
+      </div>
 
       <ActionSection />
       <ImpactStats />
       <Footer />
-
-      <StoryTransition
-        isActive={transitioning}
-        onComplete={handleTransitionComplete}
-      />
     </div>
   );
 }

@@ -3,12 +3,14 @@ import ActionCard from "./ActionCard";
 
 export default function ActionSection() {
   return (
-    <section id="action" className="relative min-h-screen min-h-[100dvh] flex items-center justify-center py-20 px-6">
-      <div className="absolute inset-0 bg-gradient-to-b from-abyss via-deep to-abyss" aria-hidden="true" />
+    <section id="action" className="relative min-h-[85vh] flex items-center justify-center py-20 px-6 bg-gradient-to-b from-[#011420] via-[#04344a] to-[#021018]">
+      {/* Ocean Ambient Glow */}
+      <div className="absolute top-1/3 left-1/4 w-80 h-80 rounded-full bg-[#14b8a6]/10 blur-3xl pointer-events-none" />
+
       <div className="relative z-10 max-w-5xl w-full">
         <div className="text-center mb-12">
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0.5, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
@@ -17,7 +19,7 @@ export default function ActionSection() {
             YOUR CHAPTER BEGINS NOW.
           </motion.h2>
           <motion.p
-            initial={{ opacity: 0 }}
+            initial={{ opacity: 0.5 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}

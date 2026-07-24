@@ -21,73 +21,89 @@ export default function ComicChapter({ chapter, index }) {
     <section
       ref={sectionRef}
       id={chapter.id}
-      className="section flex items-center justify-center scroll-snap-start relative min-h-screen py-8"
+      className="section flex flex-col items-center justify-center scroll-snap-start relative min-h-screen py-16 px-4 md:px-8 bg-[#010b12]"
       aria-label={chapter.ariaLabel}
     >
-      <div className="relative w-full max-w-5xl mx-auto h-[85vh] flex flex-col items-center justify-center overflow-hidden rounded-2xl border border-[rgba(94,234,212,0.2)] bg-[#04121e]/90 shadow-[0_20px_50px_rgba(0,0,0,0.6)] p-2 md:p-4">
-        {/* Loading Spinner so black screen never occurs during image download */}
-        {!imgLoaded && !imgError && (
-          <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-[#050B14] text-aqua gap-3">
-            <div className="w-10 h-10 border-3 border-aqua/20 border-t-aqua rounded-full animate-spin" />
-            <p className="text-xs font-mono text-muted tracking-widest uppercase">
-              Loading Chapter {index + 1}...
-            </p>
-          </div>
-        )}
+      {/* Ocean Ambient Glow at Z = -5 */}
+      <div
+        className="absolute inset-0 pointer-events-none z-0 opacity-30"
+        style={{ transform: "translateZ(-5px) scale(1.1)" }}
+      >
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[80vw] h-[60vh] rounded-full bg-gradient-to-tr from-[#0e7490]/30 to-[#2ec4b6]/20 blur-3xl" />
+      </div>
 
-        {!imgError && chapter.image && (
-          <img
-            ref={imgRef}
-            src={chapter.image}
-            alt={chapter.ariaLabel}
-            className={`w-full h-full object-contain z-[1] transition-all duration-700 ${
-              imgLoaded ? "opacity-100 scale-100" : "opacity-0 scale-95"
-            }`}
-            loading={index < 2 ? "eager" : "lazy"}
-            decoding="async"
-            onError={() => setImgError(true)}
-            onLoad={() => setImgLoaded(true)}
-          />
-        )}
-
-        {imgError && (
-          <div
-            className={`absolute inset-0 z-0 reef-fallback ${
-              chapter.mood === "beauty-to-loss" || chapter.mood === "mystery-hope"
-                ? "healthy"
-                : chapter.mood === "renewal"
-                ? "planted"
-                : "bleached"
-            }`}
-            aria-hidden="true"
-          />
-        )}
-
-        <div className="absolute inset-0 bg-gradient-to-t from-[#021018]/90 via-transparent to-transparent z-[2] pointer-events-none" />
-
-        {/* Primary Info sitting physically closer to camera (z=0 vs background z=-5) per depth scale rule */}
-        <div
-          className="absolute bottom-6 left-0 right-0 z-[10] text-center px-4 pointer-events-auto"
-          style={{ transform: "translateZ(0)" }}
+      {/* Full Page Comic Container */}
+      <div
+        className="relative w-full max-w-5xl mx-auto flex flex-col items-center justify-center z-10"
+        style={{ transform: "translateZ(0)" }}
+      >
+        {/* Sleek Floating Header Badge */}
+        <motion.div
+          initial={prefersReducedMotion ? false : { opacity: 0, y: -15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-6 flex items-center gap-3 bg-[#031525]/90 border border-[rgba(94,234,212,0.3)] backdrop-blur-md px-6 py-2.5 rounded-full shadow-lg"
         >
-          <motion.div
-            initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.8 }}
-            className="bg-[#05131f]/90 border border-[rgba(94,234,212,0.25)] backdrop-blur-md max-w-xl mx-auto p-5 rounded-xl shadow-[0_12px_40px_rgba(0,0,0,0.7)]"
-          >
-            <p className="text-aqua text-xs tracking-[0.25em] uppercase mb-1 font-semibold">
-              Chapter {index + 1}
-            </p>
-            <h2 className="font-display text-2xl md:text-3xl text-white font-normal">
-              {chapter.name}
-            </h2>
-            <p className="text-mist text-sm mt-2 max-w-md mx-auto font-display italic">
-              &quot;{chapter.keyText}&quot;
-            </p>
-          </motion.div>
+          <span className="bg-[#ea580c] text-white text-xs font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+            Chapter 0{index + 1}
+          </span>
+          <h2 className="font-display text-xl sm:text-2xl text-white font-semibold tracking-wide">
+            {chapter.name}
+          </h2>
+        </motion.div>
+
+        {/* Comic Strip Canvas Container */}
+        <div className="relative w-full flex items-center justify-center rounded-xl overflow-hidden shadow-[0_20px_70px_rgba(0,0,0,0.85)] border border-[rgba(94,234,212,0.2)] bg-[#020e17]">
+          {/* Loading Spinner */}
+          {!imgLoaded && !imgError && (
+            <div className="min-h-[70vh] w-full flex flex-col items-center justify-center bg-[#050B14] text-aqua gap-3">
+              <div className="w-12 h-12 border-4 border-aqua/20 border-t-aqua rounded-full animate-spin" />
+              <p className="text-xs font-mono text-muted tracking-widest uppercase">
+                Loading High-Res Comic Chapter {index + 1}...
+              </p>
+            </div>
+          )}
+
+          {!imgError && chapter.image && (
+            <img
+              ref={imgRef}
+              src={chapter.image}
+              alt={chapter.ariaLabel}
+              className={`w-full max-w-4xl h-auto object-contain max-h-[85vh] transition-all duration-700 ${
+                imgLoaded ? "opacity-100 scale-100" : "opacity-0 scale-95"
+              }`}
+              loading={index < 2 ? "eager" : "lazy"}
+              decoding="async"
+              onError={() => setImgError(true)}
+              onLoad={() => setImgLoaded(true)}
+            />
+          )}
+
+          {imgError && (
+            <div
+              className={`w-full min-h-[70vh] reef-fallback ${
+                chapter.mood === "beauty-to-loss" || chapter.mood === "mystery-hope"
+                  ? "healthy"
+                  : chapter.mood === "renewal"
+                  ? "planted"
+                  : "bleached"
+              }`}
+              aria-hidden="true"
+            />
+          )}
         </div>
+
+        {/* Subtle Key Text Caption Below Comic Strip (Never covering artwork) */}
+        <motion.p
+          initial={prefersReducedMotion ? false : { opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="mt-5 text-mist text-base md:text-lg font-display italic text-center max-w-xl px-4 text-shadow-glow"
+        >
+          &quot;{chapter.keyText}&quot;
+        </motion.p>
       </div>
     </section>
   );
