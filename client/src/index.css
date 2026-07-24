@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  /* Halftone Dot Overlay Effect for 90s Pop-Art look */
+  .bg-halftone {
+    background-image: radial-gradient(rgba(0, 0, 0, 0.25) 20%, transparent 20%);
+    background-size: 8px 8px;
+  }
+
+  .bg-halftone-yellow {
+    background-color: #FFE600;
+    background-image: radial-gradient(rgba(0, 0, 0, 0.2) 20%, transparent 20%);
+    background-size: 8px 8px;
+  }
+
+  .bg-halftone-teal {
+    background-color: #00F0FF;
+    background-image: radial-gradient(rgba(0, 0, 0, 0.2) 20%, transparent 20%);
+    background-size: 8px 8px;
+  }
+
+  .bg-halftone-pink {
+    background-color: #FF2A85;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.3) 20%, transparent 20%);
+    background-size: 8px 8px;
+  }
+
+  .bg-halftone-blue {
+    background-color: #0066FF;
+    background-image: radial-gradient(rgba(0, 0, 0, 0.3) 20%, transparent 20%);
+    background-size: 10px 10px;
+  }
+
+  /* Neo-brutalist comic panel outlines */
+  .comic-box {
+    border: 4px solid #000000;
+    box-shadow: 5px 5px 0px 0px #000000;
+  }
+
+  .comic-box-lg {
+    border: 4px solid #000000;
+    box-shadow: 8px 8px 0px 0px #000000;
+  }
+
+  .comic-box-hover {
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .comic-box-hover:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 8px 8px 0px 0px #000000;
+  }
+
+  .comic-box-hover:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px 0px #000000;
+  }
+
+  /* Speech Bubble Tailwind utilities */
+  .speech-bubble {
+    position: relative;
+    border: 4px solid #000000;
+    box-shadow: 6px 6px 0px 0px #000000;
+  }
+
+  .speech-bubble-bottom::after {
+    content: '';
+    position: absolute;
+    bottom: -18px;
+    left: 24px;
+    border-width: 18px 14px 0 0;
+    border-style: solid;
+    border-color: #000000 transparent transparent transparent;
+  }
+}
+
+/* Custom scrollbars with comic yellow thumb */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0A0E1A;
+  border-left: 2px solid #000;
+}
+::-webkit-scrollbar-thumb {
+  background: #FFE600;
+  border: 2px solid #000;
+}
