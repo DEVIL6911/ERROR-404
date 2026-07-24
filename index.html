@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>REEF — One Reef, One Voice</title>
+  <meta name="description" content="Coral reefs cover less than 1% of the ocean floor — yet hold a quarter of all marine life. Scroll the story. Make the choice. Join REEF." />
+  <meta name="theme-color" content="#021a28" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="REEF — One Reef, One Voice" />
+  <meta property="og:description" content="Coral reefs cover less than 1% of the ocean floor — yet hold a quarter of all marine life. Scroll the story. Make the choice." />
+  <meta property="og:image" content="assets/images/hero.jpg" />
+  <meta property="og:image:alt" content="A thriving living coral reef city beneath the waves" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="REEF — One Reef, One Voice" />
+  <meta name="twitter:description" content="A scroll story about the living city beneath the waves — and the choice to bring it back." />
+  <meta name="twitter:image" content="assets/images/hero.jpg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Nav -->
+  <header class="site-nav" id="site-nav">
+    <a class="logo" href="#hero" aria-label="REEF home">
+      <span class="logo-mark" aria-hidden="true">◉</span>
+      REEF
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#silence">The Silence</a>
+      <a href="#turn">Hope</a>
+      <a href="#impact">Your Part</a>
+      <a href="#join" class="nav-cta">Dive In</a>
+    </nav>
+  </header>
+
+  <!-- 1. HERO -->
+  <section class="section hero" id="hero" data-section="hero">
+    <canvas id="ocean-canvas" aria-hidden="true"></canvas>
+    <div class="hero-rays" aria-hidden="true"></div>
+    <div class="hero-visual">
+      <img
+        id="hero-img"
+        class="scene-img"
+        src="assets/images/hero.jpg"
+        alt="Thriving vibrant coral reef with tropical fish and sunbeams through turquoise water"
+        onerror="this.classList.add('img-missing')"
+      />
+      <div class="hero-fallback" aria-hidden="true"></div>
+    </div>
+    <div class="section-content hero-content">
+      <p class="eyebrow">One Reef · One Voice</p>
+      <h1 class="headline">The Living City<br /><em>Beneath the Waves</em></h1>
+      <p class="subhead">
+        Coral reefs cover less than 1% of the ocean floor — yet hold a quarter of all marine life on Earth.
+      </p>
+      <div class="body-fade" id="hero-body">
+        <p>Beneath the waves lies a city older than any on land.</p>
+        <p>It feeds a billion people. It breathes for the ocean.</p>
+        <p class="emphasis">It has no voice of its own.</p>
+      </div>
+      <a class="btn btn-ghost scroll-cta" href="#silence">Scroll to discover ↓</a>
+    </div>
+    <div class="scroll-hint" aria-hidden="true">
+      <span></span>
+    </div>
+  </section>
+
+  <!-- 2. THE SILENCE -->
+  <section class="scroll-act silence" id="silence" data-section="silence">
+    <div class="sticky-viewport">
+      <div class="crossfade-stage" id="silence-stage">
+        <div class="crossfade-layer layer-a">
+          <img
+            src="assets/images/reef-healthy.jpg"
+            alt="Vibrant healthy coral reef with saturated colors and fish"
+            class="scene-img"
+            onerror="this.classList.add('img-missing')"
+          />
+          <div class="reef-fallback healthy" aria-hidden="true"></div>
+        </div>
+        <div class="crossfade-layer layer-b" id="silence-bleached">
+          <img
+            src="assets/images/reef-bleached.jpg"
+            alt="Bleached skeletal coral reef, lifeless and desaturated"
+            class="scene-img"
+            onerror="this.classList.add('img-missing')"
+          />
+          <div class="reef-fallback bleached" aria-hidden="true"></div>
+        </div>
+        <div class="drain-overlay" id="drain-overlay" aria-hidden="true"></div>
+      </div>
+      <div class="section-content silence-content">
+        <h2 class="headline" id="silence-headline">What We're Losing</h2>
+        <div class="body-copy">
+          <p>Every year, the ocean grows warmer.</p>
+          <p>Every year, more of this city turns to ash.</p>
+          <p class="stat-line"><strong>Over 50% is already gone.</strong></p>
+        </div>
+        <div class="live-counter" aria-live="polite">
+          <span class="counter-number" id="reef-counter">0</span>
+          <span class="counter-suffix">%+</span>
+          <p class="counter-label">of coral reefs degraded worldwide</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. THE TURN -->
+  <section class="scroll-act turn" id="turn" data-section="turn">
+    <div class="sticky-viewport">
+      <div class="crossfade-stage" id="turn-stage">
+        <div class="crossfade-layer layer-a">
+          <img
+            src="assets/images/reef-bleached.jpg"
+            alt="Bleached white coral before restoration"
+            class="scene-img"
+            onerror="this.classList.add('img-missing')"
+          />
+          <div class="reef-fallback bleached" aria-hidden="true"></div>
+        </div>
+        <div class="crossfade-layer layer-b" id="turn-alive">
+          <img
+            src="assets/images/reef-plant.jpg"
+            alt="Diver planting a small vibrant coral fragment on bleached reef"
+            class="scene-img"
+            onerror="this.classList.add('img-missing')"
+          />
+          <div class="reef-fallback planted" aria-hidden="true"></div>
+        </div>
+        <div class="glow-orb" id="glow-orb" aria-hidden="true"></div>
+      </div>
+      <div class="section-content turn-content">
+        <h2 class="headline">It's Not Too Late</h2>
+        <div class="body-copy">
+          <p>But reefs don't need a miracle.</p>
+          <p>They need a chance. A fragment. A hand.</p>
+          <p class="stat-line"><strong>A choice.</strong></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. YOUR PART -->
+  <section class="section impact" id="impact" data-section="impact">
+    <div class="impact-bg">
+      <img
+        src="assets/images/bg-soft.jpg"
+        alt=""
+        class="scene-img"
+        aria-hidden="true"
+        onerror="this.classList.add('img-missing')"
+      />
+      <div class="impact-fallback" aria-hidden="true"></div>
+    </div>
+    <div class="section-content impact-content">
+      <h2 class="headline reveal">Every Dive, Every Hour, Every Choice — <em>Writes the Next Page</em></h2>
+
+      <!-- Widget 1: Impact Calculator -->
+      <div class="widget calculator reveal">
+        <h3>Impact Calculator</h3>
+        <label class="slider-label" for="hours-slider">
+          Hours volunteered per month
+          <span class="slider-value" id="hours-value">5</span>
+        </label>
+        <input
+          type="range"
+          id="hours-slider"
+          min="0"
+          max="20"
+          value="5"
+          step="1"
+          aria-valuemin="0"
+          aria-valuemax="20"
+          aria-valuenow="5"
+        />
+        <div class="calc-output">
+          <span class="calc-approx">≈</span>
+          <span class="calc-number" id="sqm-output">30</span>
+          <span class="calc-unit">sq. meters of reef restored per year</span>
+        </div>
+        <p class="calc-note">Estimate based on community restoration rates · hours × 12 × 0.5 m²</p>
+      </div>
+
+      <!-- Widget 2: Adopt-a-Reef cards -->
+      <div class="widget adopt-grid reveal">
+        <article class="adopt-card" data-adopt="fragment">
+          <div class="card-icon" aria-hidden="true">🪸</div>
+          <h3>Adopt a Coral Fragment</h3>
+          <p>Fund a single fragment's journey from nursery to reef — the first spark of color returning.</p>
+          <button type="button" class="btn btn-outline learn-more" data-modal="fragment">Learn More</button>
+        </article>
+        <article class="adopt-card" data-adopt="dive">
+          <div class="card-icon" aria-hidden="true">🤿</div>
+          <h3>Sponsor a Dive Team</h3>
+          <p>Equip one restoration dive: gear, boats, and the hands that plant hope branch by branch.</p>
+          <button type="button" class="btn btn-outline learn-more" data-modal="dive">Learn More</button>
+        </article>
+        <article class="adopt-card" data-adopt="star">
+          <div class="card-icon" aria-hidden="true">⭐</div>
+          <h3>Fund a Reef Star</h3>
+          <p>Support a full restoration frame — a living constellation of coral that rebuilds an entire patch.</p>
+          <button type="button" class="btn btn-outline learn-more" data-modal="star">Learn More</button>
+        </article>
+      </div>
+
+      <!-- Widget 3: Volunteer form -->
+      <div class="widget volunteer reveal">
+        <h3>Join the Story</h3>
+        <form id="volunteer-form" novalidate>
+          <div class="form-row">
+            <label>
+              Name
+              <input type="text" name="name" id="vol-name" required autocomplete="name" placeholder="Your name" />
+            </label>
+            <label>
+              Email
+              <input type="email" name="email" id="vol-email" required autocomplete="email" placeholder="you@example.com" />
+            </label>
+          </div>
+          <fieldset class="intent-fieldset">
+            <legend>I want to:</legend>
+            <label class="check"><input type="checkbox" name="intent" value="dive" /> Dive</label>
+            <label class="check"><input type="checkbox" name="intent" value="donate" /> Donate</label>
+            <label class="check"><input type="checkbox" name="intent" value="awareness" /> Spread Awareness</label>
+          </fieldset>
+          <button type="submit" class="btn btn-primary">Sign Up</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. CLOSING -->
+  <section class="section join" id="join" data-section="join">
+    <div class="join-visual">
+      <img
+        src="assets/images/closing.jpg"
+        alt="Restored vibrant coral reef with divers, framed as if on a laptop screen"
+        class="scene-img"
+        onerror="this.classList.add('img-missing')"
+      />
+      <div class="join-fallback" aria-hidden="true">
+        <div class="device-frame">
+          <div class="device-screen">
+            <div class="mini-reef"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section-content join-content">
+      <h2 class="headline reveal">The Reef Doesn't Need Saving From The Outside</h2>
+      <p class="body-copy reveal emphasis">It needs you, inside the story.</p>
+      <a class="btn btn-primary btn-large reveal" href="#impact" id="final-cta">Dive In →</a>
+      <p class="tagline reveal">One Reef · One Voice</p>
+    </div>
+  </section>
+
+  <!-- Modals -->
+  <div class="modal-backdrop" id="modal-backdrop" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" id="modal">
+      <button type="button" class="modal-close" id="modal-close" aria-label="Close">&times;</button>
+      <h3 id="modal-title"></h3>
+      <p id="modal-body"></p>
+      <button type="button" class="btn btn-primary" id="modal-action">Count Me In</button>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden>
+    Welcome to REEF — check your inbox 🌊
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
