@@ -1,0 +1,42 @@
+export const chapters = [
+  {
+    id: "chapter-1",
+    name: "The Silent Ocean",
+    image: "/assets/chapter-1-silent-ocean.png",
+    ariaLabel: "Chapter 1: A vibrant coral reef transitioning to bleaching, fish disappearing, and a lonely ocean",
+    mood: "beauty-to-loss",
+    keyText: "Once, the ocean was full of color.",
+  },
+  {
+    id: "chapter-2",
+    name: "The Call",
+    image: "/assets/chapter-2-the-call.png",
+    ariaLabel: "Chapter 2: Kai discovers a glowing turquoise coral fragment in a damaged reef",
+    mood: "mystery-hope",
+    keyText: "The ocean can still heal.",
+  },
+  {
+    id: "chapter-3",
+    name: "The Journey",
+    image: "/assets/chapter-3-the-journey.png",
+    ariaLabel: "Chapter 3: Kai travels across reefs, learning from guardians and witnessing both destruction and resilience",
+    mood: "adventure-discovery",
+    keyText: "Healing takes courage.",
+  },
+  {
+    id: "chapter-4",
+    name: "Hope Returns",
+    image: "/assets/chapter-4-hope-returns.png",
+    ariaLabel: "Chapter 4: The reef begins to recover as fragments grow and marine life returns",
+    mood: "renewal",
+    keyText: "Small acts rebuild worlds.",
+  },
+  {
+    id: "chapter-5",
+    name: "Your Turn",
+    image: "/assets/chapter-5-your-turn.png",
+    ariaLabel: "Chapter 5: A direct call to the reader to join the restoration movement",
+    mood: "call-to-action",
+    keyText: "The next chapter is yours.",
+  },
+];
