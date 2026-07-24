@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, useCallback } from "react";
 import * as THREE from "three";
 
 export default function CoralFragment() {
@@ -6,7 +6,10 @@ export default function CoralFragment() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    setIsMobile(window.innerWidth < 768);
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   useEffect(() => {
@@ -122,11 +125,9 @@ export default function CoralFragment() {
       cancelAnimationFrame(frameId);
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("resize", handleResize);
-      // Dispose geometries
-      geometriesToDispose.forEach(geometry => geometry.dispose());
+      geometriesToDispose.forEach((geometry) => geometry.dispose());
       geometriesToDispose.length = 0;
-      // Dispose materials
-      materialsToDispose.forEach(material => material.dispose());
+      materialsToDispose.forEach((material) => material.dispose());
       materialsToDispose.clear();
       renderer.dispose();
       if (renderer.domElement.parentNode) {

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 
-export default function Header({ onStartStory }) {
+export default function Header({ onStartStory, storyStarted }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -31,15 +31,17 @@ export default function Header({ onStartStory }) {
         aria-label="REEF home"
       >
         <span className="text-aqua text-shadow-glow animate-pulse-glow" aria-hidden="true">
-          ◉
+          †
         </span>
         REEF
       </button>
 
       <nav className="hidden md:flex items-center gap-6 text-sm tracking-wide" aria-label="Primary">
-        <button onClick={() => scrollTo("chapters")} className="opacity-75 hover:opacity-100 hover:text-glow transition-opacity">
-          Chapters
-        </button>
+        {storyStarted && (
+          <button onClick={() => scrollTo("chapter-1")} className="opacity-75 hover:opacity-100 hover:text-glow transition-opacity">
+            Chapters
+          </button>
+        )}
         <button onClick={() => scrollTo("action")} className="opacity-75 hover:opacity-100 hover:text-glow transition-opacity">
           Action
         </button>
@@ -47,7 +49,7 @@ export default function Header({ onStartStory }) {
           Impact
         </button>
         <button
-          onClick={onStartStory}
+          onClick={() => { setMenuOpen(false); onStartStory(); }}
           className="border border-[rgba(94,234,212,0.22)] rounded-full px-4 py-1.5 opacity-100 bg-[rgba(46,196,182,0.12)] hover:bg-[rgba(46,196,182,0.28)] hover:border-aqua transition-colors"
         >
           Dive In →
@@ -66,7 +68,9 @@ export default function Header({ onStartStory }) {
       {menuOpen && (
         <div className="absolute top-full left-0 right-0 bg-[rgba(1,11,18,0.95)] border-b border-[rgba(94,234,212,0.22)] backdrop-blur-md md:hidden">
           <nav className="flex flex-col p-4 gap-4 text-sm tracking-wide" aria-label="Mobile">
-            <button onClick={() => scrollTo("chapters")} className="text-left opacity-75 hover:text-glow">Chapters</button>
+            {storyStarted && (
+              <button onClick={() => scrollTo("chapter-1")} className="text-left opacity-75 hover:text-glow">Chapters</button>
+            )}
             <button onClick={() => scrollTo("action")} className="text-left opacity-75 hover:text-glow">Action</button>
             <button onClick={() => scrollTo("impact")} className="text-left opacity-75 hover:text-glow">Impact</button>
             <button onClick={() => { onStartStory(); setMenuOpen(false); }} className="text-left text-aqua">Dive In →</button>

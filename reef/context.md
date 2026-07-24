@@ -177,6 +177,6 @@ npm run preview
 - **New color/spacing?** Add to `@theme` in `src/index.css`.
 - **New chapter?** Add entry to `src/data/chapters.js` + drop image into `public/assets/`.
 - **Bug in Three.js?** Edit `src/components/Hero/CoralFragment.jsx`. Watch the cleanup arrays (`geometriesToDispose`, `materialsToDispose`).
-- **Bug in transitions?** Edit `src/components/StoryTransition.jsx`.
+- **Bug in transitions?** Edit `src/components/StoryTransition.jsx` or `src/components/Hero/LandingHero.jsx`. The `StoryTransition` uses a clean fade→black→complete sequence. The `LandingHero` immediately calls `onStartStory` on button click with no artificial delay.
 - **Smooth scroll issues?** Edit `src/hooks/useSmoothScroll.js`.
 - **Accessibility?** All chapter sections use `ariaLabel` from data; `StoryTransition` is `aria-hidden`; buttons have `aria-label` where needed.

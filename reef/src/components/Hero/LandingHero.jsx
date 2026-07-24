@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect, Suspense, lazy } from "react";
+import { useRef, useEffect, Suspense, lazy } from "react";
 import { motion } from "motion/react";
 import { useReducedMotion } from "../../hooks/useReducedMotion";
 import OceanParticles from "../OceanParticles";
@@ -14,20 +14,10 @@ function CoralSkeleton() {
 }
 
 export default function LandingHero({ onStartStory }) {
-  const [isTransitioning, setIsTransitioning] = useState(false);
   const prefersReducedMotion = useReducedMotion();
   const heroRef = useRef(null);
 
-  const handleStart = async () => {
-    if (isTransitioning) return;
-    setIsTransitioning(true);
-
-    if (prefersReducedMotion) {
-      onStartStory();
-      return;
-    }
-
-    await new Promise((resolve) => setTimeout(resolve, 800));
+  const handleStart = () => {
     onStartStory();
   };
 
@@ -101,10 +91,9 @@ export default function LandingHero({ onStartStory }) {
         >
           <button
             onClick={handleStart}
-            disabled={isTransitioning}
-            className="btn btn-primary btn-large text-deep font-semibold disabled:opacity-50"
+            className="btn btn-primary btn-large text-deep font-semibold"
           >
-            {isTransitioning ? "Entering..." : "START THE STORY →"}
+            START THE STORY →
           </button>
           <button
             onClick={() => document.getElementById("action")?.scrollIntoView({ behavior: "smooth" })}

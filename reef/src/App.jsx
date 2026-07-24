@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import Header from "./components/Header";
 import LandingHero from "./components/Hero/LandingHero";
@@ -20,27 +20,37 @@ export default function App() {
   useSmoothScroll();
 
   const handleStartStory = useCallback(() => {
-    if (transitioning) return;
     setTransitioning(true);
-  }, [transitioning]);
+  }, []);
 
   const handleTransitionComplete = useCallback(() => {
     setStoryStarted(true);
     setTransitioning(false);
+    setTimeout(() => {
+      const el = document.getElementById("chapter-1");
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    }, 100);
   }, []);
 
-  return (
-    <div className="relative bg-abyss text-mist">
-      <ScrollProgress progress={progress} />
-      <Header onStartStory={handleStartStory} />
+  useEffect(() => {
+    if (storyStarted) {
+      const el = document.getElementById("chapter-1");
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [storyStarted]);
 
-      <AnimatePresence mode="wait">
+  return (
+    <div className="relative bg-abyss text-mist min-h-screen">
+      <ScrollProgress progress={progress} />
+      <Header onStartStory={handleStartStory} storyStarted={storyStarted} />
+
+      <AnimatePresence>
         {!storyStarted && (
           <motion.div
             key="landing"
             initial={{ opacity: 1 }}
-            exit={{ opacity: 0, y: -50 }}
-            transition={{ duration: 0.6 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
           >
             <LandingHero onStartStory={handleStartStory} />
           </motion.div>
@@ -52,7 +62,7 @@ export default function App() {
           key="comic"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.5 }}
         >
           {chapters.map((chapter, i) => (
             <ComicChapter key={chapter.id} chapter={chapter} index={i} />
