@@ -7,11 +7,17 @@ export default function OceanParticles() {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
-    let w = canvas.width = window.innerWidth;
-    let h = canvas.height = window.innerHeight;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    let w = window.innerWidth;
+    let h = window.innerHeight;
+    canvas.width = w * dpr;
+    canvas.height = h * dpr;
+    ctx.scale(dpr, dpr);
+    
     let raf = 0;
     const particles = [];
-    const count = 20;
+    const isMobile = window.innerWidth < 768;
+    const count = isMobile ? 10 : 20;
 
     for (let i = 0; i < count; i++) {
       particles.push({
@@ -42,8 +48,11 @@ export default function OceanParticles() {
     draw();
 
     const onResize = () => {
-      w = canvas.width = window.innerWidth;
-      h = canvas.height = window.innerHeight;
+      w = window.innerWidth;
+      h = window.innerHeight;
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      ctx.scale(dpr, dpr);
     };
     window.addEventListener("resize", onResize, { passive: true });
 

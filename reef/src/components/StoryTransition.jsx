@@ -24,12 +24,12 @@ export default function StoryTransition({ isActive, onComplete }) {
     <AnimatePresence>
       {isActive && (
         <motion.div
-          className="fixed inset-0 z-[150] pointer-events-none bg-[#050B14]"
+          className="fixed inset-0 z-[150] pointer-events-none bg-white"
           aria-hidden="true"
           initial={{ opacity: 0 }}
-          animate={{ opacity: 0.9 }}
+          animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.25 }}
+          transition={{ duration: 0.3 }}
         />
       )}
     </AnimatePresence>
